@@ -1,0 +1,35 @@
+[
+  {
+    "id": "da7f36b1488a4874929c50b281fb6b96",
+    "title": "Meeting",
+    "start_iso": "2026-03-06T10:02:00+05:30",
+    "end_iso": "2026-03-06T10:32:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "location": "",
+    "meeting_link": "",
+    "description": "",
+    "created_iso": "2026-03-06T10:00:54.688894+05:30"
+  },
+  {
+    "id": "ace99f7a493440f7a55d7bced748f5f9",
+    "title": "Meeting",
+    "start_iso": "2024-03-08T10:00:00+05:30",
+    "end_iso": "2024-03-08T11:00:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "location": "Conference Room",
+    "meeting_link": "https://meet.google.com/xyz",
+    "description": "",
+    "created_iso": "2026-03-06T12:00:46.066349+05:30"
+  },
+  {
+    "id": "5b87c78ea1304748ad1e7764c53da7cc",
+    "title": "Leave Request",
+    "start_iso": "2024-03-10T09:00:00+05:30",
+    "end_iso": "2024-03-10T17:00:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "location": "Home",
+    "meeting_link": "",
+    "description": "Requesting a leave from work",
+    "created_iso": "2026-03-06T15:07:17.001116+05:30"
+  }
+]

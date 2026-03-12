@@ -31,5 +31,27 @@
     "meeting_link": "",
     "description": "Requesting a leave from work",
     "created_iso": "2026-03-06T15:07:17.001116+05:30"
+  },
+  {
+    "id": "c5c40ee4965247b5b611e151a77818bf",
+    "title": "Transformer Model Explanation",
+    "start_iso": "2024-09-16T10:00:00+05:30",
+    "end_iso": "2024-09-16T10:30:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "location": "",
+    "meeting_link": "",
+    "description": "Understanding the components of the transformer model",
+    "created_iso": "2026-03-12T10:23:00.352691+05:30"
+  },
+  {
+    "id": "23e51a11959146d696bc6f227373998f",
+    "title": "મશીન લર્નિંગ",
+    "start_iso": "2024-03-16T10:00:00+05:30",
+    "end_iso": "2024-03-16T11:00:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "location": "ઓનલાઇન",
+    "meeting_link": "https://meet.google.com/xyz",
+    "description": "મશીન લર્નિંગ એ એક એવી ટેકનોલોજી છે જેમાં કમ્પ્યુટરને ડેટાથી શીખવવામાં આવે છે, જેથી તે પોતાની જાતે નિર્ણયો લઈ શકે.",
+    "created_iso": "2026-03-12T14:48:38.493376+05:30"
   }
 ]

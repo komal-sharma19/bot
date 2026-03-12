@@ -114,53 +114,53 @@ def _ics_escape(s: str) -> str:
 # -----------------------------
 # Time Tools
 # -----------------------------
-def get_current_time() -> Dict[str, str]:
-    tz = pytz.timezone("Asia/Kolkata")
+def get_current_time(timezone: str = "Asia/Kolkata") -> Dict[str, str]:
+    tz = pytz.timezone(timezone)
     now = datetime.now(tz)
     return {
         "date": now.strftime("%Y-%m-%d"),
         "time": now.strftime("%I:%M %p"),
         "day": now.strftime("%A"),
-        "timezone": "Asia/Kolkata",
+        "timezone": timezone,
         "iso": now.isoformat(),
     }
 
 
-# def time_until(target_datetime: str, timezone: str = "Asia/Kolkata") -> Dict[str, Any]:
-#     """
-#     Returns time remaining until target_datetime (IST by default).
+def time_until(target_datetime: str, timezone: str = "Asia/Kolkata") -> Dict[str, Any]:
+    """
+    Returns time remaining until target_datetime (IST by default).
 
-#     target_datetime format:
-#     - "YYYY-MM-DD HH:MM"  e.g. "2026-03-05 17:00"
-#     """
-#     tz = pytz.timezone(timezone)
-#     now = datetime.now(tz)
+    target_datetime format:
+    - "YYYY-MM-DD HH:MM"  e.g. "2026-03-05 17:00"
+    """
+    tz = pytz.timezone(timezone)
+    now = datetime.now(tz)
 
-#     # Parse target in the same tz
-#     target = _parse_dt_ist(target_datetime).astimezone(tz)
+    # Parse target in the same tz
+    target = _parse_dt_ist(target_datetime).astimezone(tz)
 
-#     delta = target - now
-#     seconds = int(delta.total_seconds())
+    delta = target - now
+    seconds = int(delta.total_seconds())
 
-#     status = "future"
-#     if seconds < 0:
-#         status = "past"
-#         seconds = abs(seconds)
+    status = "future"
+    if seconds < 0:
+        status = "past"
+        seconds = abs(seconds)
 
-#     days = seconds // 86400
-#     hours = (seconds % 86400) // 3600
-#     minutes = (seconds % 3600) // 60
+    days = seconds // 86400
+    hours = (seconds % 86400) // 3600
+    minutes = (seconds % 3600) // 60
 
-#     return {
-#         "status": status,               # "future" or "past"
-#         "now_iso": now.isoformat(),
-#         "target_iso": target.isoformat(),
-#         "days": days,
-#         "hours": hours,
-#         "minutes": minutes,
-#         "human": f"{days}d {hours}h {minutes}m",
-#         "timezone": timezone,
-#     }
+    return {
+        "status": status,               # "future" or "past"
+        "now_iso": now.isoformat(),
+        "target_iso": target.isoformat(),
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "human": f"{days}d {hours}h {minutes}m",
+        "timezone": timezone,
+    }
 
 
 # -----------------------------
@@ -374,34 +374,39 @@ def get_tool_schemas() -> List[Dict[str, Any]]:
             "type": "function",
             "function": {
                 "name": "get_current_time",
-                "description": "Get the current date and time in Asia/Kolkata timezone only.",
+                "description": "Get the current date and time. Default timezone is Asia/Kolkata.",
                 "parameters": {
                     "type": "object",
-                    "properties": {},
+                    "properties": {
+                        "timezone": {
+                            "type": "string",
+                            "description": "IANA timezone string like Asia/Kolkata"
+                        }
+                    }
                 },
             },
         },
-        # {
-        #     "type": "function",
-        #     "function": {
-        #         "name": "time_until",
-        #         "description": "Get time remaining until a target datetime (default IST).",
-        #         "parameters": {
-        #             "type": "object",
-        #             "properties": {
-        #                 "target_datetime": {
-        #                     "type": "string",
-        #                     "description": "Target time in format 'YYYY-MM-DD HH:MM' (e.g. '2026-03-05 17:00').",
-        #                 },
-        #                 "timezone": {
-        #                     "type": "string",
-        #                     "description": "IANA timezone string (default Asia/Kolkata).",
-        #                 },
-        #             },
-        #             "required": ["target_datetime"],
-        #         },
-        #     },
-        # },
+        {
+            "type": "function",
+            "function": {
+                "name": "time_until",
+                "description": "Get time remaining until a target datetime (default IST).",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "target_datetime": {
+                            "type": "string",
+                            "description": "Target time in format 'YYYY-MM-DD HH:MM' (e.g. '2026-03-05 17:00').",
+                        },
+                        "timezone": {
+                            "type": "string",
+                            "description": "IANA timezone string (default Asia/Kolkata).",
+                        },
+                    },
+                    "required": ["target_datetime"],
+                },
+            },
+        },
         {
             "type": "function",
             "function": {
@@ -473,23 +478,23 @@ def get_tool_schemas() -> List[Dict[str, Any]]:
                 },
             },
         },
-        {
-            "type": "function",
-            "function": {
-                "name": "calculate",
-                "description": "Evaluate a mathematical expression like 2+2, 25*4, sqrt(16), or log10(100).",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "expression": {
-                            "type": "string",
-                            "description": "Math expression to evaluate."
-                        }
-                    },
-                    "required": ["expression"],
-                },
-            },
-        },
+        # {
+        #     "type": "function",
+        #     "function": {
+        #         "name": "calculate",
+        #         "description": "Evaluate a mathematical expression like 2+2, 25*4, sqrt(16), or log10(100).",
+        #         "parameters": {
+        #             "type": "object",
+        #             "properties": {
+        #                 "expression": {
+        #                     "type": "string",
+        #                     "description": "Math expression to evaluate."
+        #                 }
+        #             },
+        #             "required": ["expression"],
+        #         },
+        #     },
+        # },
     ]
 
 
@@ -503,10 +508,10 @@ def dispatch_tool_call(name: str, arguments: Dict[str, Any]) -> Any:
     
     if name == "get_current_time":
         return get_current_time(**arguments)
-    # if name == "time_until":
-    #     return time_until(**arguments)
-    if name == "calculate":
-        return calculate(**arguments)
+    if name == "time_until":
+        return time_until(**arguments)
+    # if name == "calculate":
+    #     return calculate(**arguments)
     if name == "create_calendar_event":
         return create_calendar_event(**arguments)
     if name == "list_calendar_events":
